@@ -14,6 +14,12 @@ in {
       fsType = "ext4";
       options = [ "noatime" ];
     };
+
+    "/drives/disk-1" = {
+      device = "/dev/sda1";
+      fsType = "vfat";
+      options = [ "noatime" ]; 
+    };
   };
 
 
@@ -46,11 +52,11 @@ in {
   services.openssh.enable = true;
 
   users = {
-    mutableUsers = false;
+    mutableUsers = true;
     users."${user}" = {
       isNormalUser = true;
-      password = password;
       extraGroups = [ "wheel" ];
+      initialPassword = password;
     };
   };
 
@@ -61,5 +67,6 @@ in {
 
   system.stateVersion = "24.05";
   nixpkgs.hostPlatform.system = pkgs.system;
+  nix.settings.trusted-users = [ "@wheel" ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
