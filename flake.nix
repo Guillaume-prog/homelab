@@ -5,15 +5,13 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
   };
 
-  outputs = { nixpkgs, ... }@inputs: 
-  let
-    system = "aarch64-linux";
-    pkgs = import nixpkgs { inherit system; };
-
+  outputs = {nixpkgs, ...} @ inputs: let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {inherit system;};
   in {
     nixosConfigurations.homelab = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs pkgs; };
-      modules = [ ./configuration.nix ];
+      specialArgs = {inherit inputs pkgs;};
+      modules = [./config/configuration.nix];
     };
   };
 }
