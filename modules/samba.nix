@@ -1,20 +1,13 @@
-{ ... }: 
-let
-  server-name = "black-library";
-in {
+{ ... }: {
 
   services.samba = {
     enable = true;
     openFirewall = true;
     settings = {
       global = {
-        # "workgroup" = "ELDAR";
-        "server string" = server-name;
-        "netbios name" = server-name;
-
         # Only allow home network and localhost access
-        "hosts allow" = "192.168.0. 127.0.0.1 localhost";
-        "hosts deny" = "0.0.0.0/0";
+        # "hosts allow" = "192.168.0.";
+        # "hosts deny" = "0.0.0.0/0";
 
         # Disable guest accounts and force user login
         "security" = "user";
@@ -29,19 +22,15 @@ in {
         # User access
         "valid users" = "lexi";
         "guest ok" = "no";
+
+        # File permissions
         browseable = "yes";
         "read only" = "no";
 
-        # File permissions
         "create mask" = "0755";
         "directory mask" = "0755";
       };
     };
-  };
-
-  services.samba-wsdd = {
-    enable = true;
-    openFirewall = true;
   };
 
   networking.firewall.enable = true;
