@@ -30,10 +30,11 @@
   users.users.lexi = {
     isNormalUser = true;
     description = "lexi";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
-  environment.systemPackages = [ pkgs.fastfetch ];
+  virtualisation.docker.enable = true;
+  environment.systemPackages = with pkgs; [ fastfetch vim tree ];
 
   system.stateVersion = "24.05";
 

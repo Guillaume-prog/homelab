@@ -1,4 +1,7 @@
-{ ... }: {
+{ ... }:
+let
+  data-folder = "/data";
+in {
 
   services.samba = {
     enable = true;
@@ -17,7 +20,7 @@
 
       media = {
         comment = "Media Files of the Black Library";
-        path = "/srv/media";
+        path = data-folder;
 
         # User access
         "valid users" = "lexi";
@@ -31,6 +34,12 @@
         "directory mask" = "0755";
       };
     };
+  };
+
+  fileSystems.${data-folder} = {
+    device = "/dev/disk/by-uuid/9D13-02CB";
+    fsType = "vfat";
+    options = [ "uid=1000" "gid=100" "dmask=002" "fmask=113" ]; # dmask = ug:rwx o:rx | fmask = ug:rw o:r
   };
 
   networking.firewall.enable = true;

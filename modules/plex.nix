@@ -3,7 +3,7 @@
   services.plex = {
     enable = true;
     openFirewall = true;
-    dataDir = "/var/lib/plex"; # Needs changing in future
+    dataDir = "/config/plex"; # Needs changing in future
   };
 
 }
