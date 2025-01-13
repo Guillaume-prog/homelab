@@ -28,7 +28,19 @@ in {
       enable = true;
       openFirewall = true;
       group = "plex";
-      dataDir="${config-dir}/radarr";
+      dataDir ="${config-dir}/radarr";
+    };
+
+    # Need to symlink dataDir
+    bazarr = {
+      enable = true;
+      openFirewall = true;
+    };
+
+    # Need to symlink dataDir
+    jellyseerr = {
+      enable = true;
+      openFirewall = true;
     };
   };
 
