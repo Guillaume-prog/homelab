@@ -6,7 +6,11 @@ let
   tz = "Etc/UTC";
 
   config-dir = "/config";
-  data-dir = "/data";
+  data-dir = "/data/Media";
+
+  downloads = "${data-dir}/Downloads";
+  movies = "${data-dir}/Movies";
+  tv = "${data-dir}/Tv Shows";
 
   lan-network = "192.168.1.0/24";
 
@@ -59,7 +63,7 @@ in {
       "ENABLE_SSL" = "no";
     };
     volumes = [
-      "${data-dir}/downloads:/downloads:rw"
+      "${downloads}:/downloads:rw"
       "${config-dir}/qbittorrent:/config:rw"
     ];
     ports = [
@@ -82,8 +86,8 @@ in {
       "TZ" = tz;
     };
     volumes = [
-      "${data-dir}/downloads:/downloads:rw"
-      "${data-dir}/movies:/movies:rw"
+      "${downloads}:/downloads:rw"
+      "${movies}:/media:rw"
       "${config-dir}/radarr:/config:rw"
     ];
     ports = [
@@ -105,8 +109,8 @@ in {
       "TZ" = tz;
     };
     volumes = [
-      "${data-dir}/downloads:/downloads:rw"
-      "${data-dir}/tv:/tv:rw"
+      "${downloads}:/downloads:rw"
+      "${tv}:/media:rw"
       "${config-dir}/sonarr:/config:rw"
     ];
     ports = [
@@ -128,7 +132,7 @@ in {
       "TZ" = tz;
     };
     volumes = [
-      "${data-dir}/prowlarr:/config:rw"
+      "${config-dir}/prowlarr:/config:rw"
     ];
     ports = [
       "9696:9696/tcp"
