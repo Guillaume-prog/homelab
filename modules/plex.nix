@@ -8,7 +8,7 @@ let
   config-dir = "/config";
   data-dir = "/data/Media";
 
-  downloads = "${data-dir}/Downloads";
+  downloads = "/cache/qbittorrent";
   movies = "${data-dir}/Movies";
   tv = "${data-dir}/Tv Shows";
 
