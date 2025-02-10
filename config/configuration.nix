@@ -33,7 +33,13 @@
     extraGroups = ["networkmanager" "wheel"];
   };
 
-  environment.systemPackages = with pkgs; [ fastfetch vim tree ];
+  environment.systemPackages = with pkgs; [ 
+    fastfetch 
+    htop
+    ncdu
+    vim 
+    tree 
+  ];
 
   system.stateVersion = "24.05";
 
