@@ -37,8 +37,8 @@ in {
   };
 
   fileSystems.${data-folder} = {
-    device = "/dev/disk/by-uuid/9D13-02CB";
-    fsType = "vfat";
+    device = "/dev/disk/by-uuid/890d2a72-9b0a-49bd-93fe-69270e18373d";
+    fsType = "ext4";
     options = [ "uid=1000" "gid=100" "dmask=002" "fmask=113" ]; # dmask = ug:rwx o:rx | fmask = ug:rw o:r
   };
 
