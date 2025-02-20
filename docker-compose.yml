@@ -1,26 +1,25 @@
 services:
     # Proxy
     proxy:
-        restart: unless-stopped
         image: jc21/nginx-proxy-manager:latest
         container_name: nginx-proxy-manager
         environment:
             - PUID=${uid}
             - PGID=${gid}
             - TZ=${timezone}
+        volumes:
+            - ${config_path}/npm/data:/data
+            - ${config_path}/npm/letsencrypt:/etc/letsencrypt
         ports:
             - 81:81
             - 80:80
             - 443:443
-        volumes:
-            - ${config_path}/npm/data:/data
-            - ${config_path}/npm/letsencrypt:/etc/letsencrypt
+        restart: unless-stopped
 
     # Plex config
     plex:
         image: lscr.io/linuxserver/plex:latest
         container_name: plex
-        network_mode: host
         environment:
             - PUID=${uid}
             - PGID=${gid}
@@ -31,6 +30,16 @@ services:
             - ${config_path}/plex:/config
             - ${tv_path}:/tv
             - ${movies_path}:/movies
+        ports:
+            - 32400:32400
+            - 1900:1900/udp
+            - 5353:5353/udp
+            - 8324:8324
+            - 32410:32410/udp
+            - 32412:32412/udp
+            - 32413:32413/udp
+            - 32414:32414/udp
+            - 32469:32469
         devices:
             - /dev/dri:/dev/dri
         restart: unless-stopped
