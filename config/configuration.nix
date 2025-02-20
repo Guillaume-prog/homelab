@@ -39,6 +39,7 @@
     ncdu
     vim 
     tree 
+    screen
   ];
 
   system.stateVersion = "24.05";
