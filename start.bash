@@ -1,0 +1,1 @@
+docker-compose up -d -e .env -e .env.secret

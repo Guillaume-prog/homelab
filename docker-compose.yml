@@ -128,8 +128,22 @@ services:
             - 5055:5055
         restart: unless-stopped
 
+    # Dashboard
+    homarr:
+        image: ghcr.io/homarr-labs/homarr:latest
+        container_name: homarr
+        environment:
+            - SECRET_ENCRYPTION_KEY=${homarr_key}
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ${config_path}/homarr:/appdata
+        ports:
+            - '7575:7575'
+        restart: unless-stopped
+
     # Auto updates docker images
     watchtower:
         image: containrrr/watchtower
+        container_name: watchtower
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
