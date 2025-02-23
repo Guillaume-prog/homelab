@@ -8,8 +8,8 @@ services:
             - PGID=${gid}
             - TZ=${timezone}
         volumes:
-            - ${config_path}/npm/data:/data
-            - ${config_path}/npm/letsencrypt:/etc/letsencrypt
+            - ${config_path}/proxy/data:/data
+            - ${config_path}/proxy/letsencrypt:/etc/letsencrypt
         ports:
             - 81:81
             - 80:80
