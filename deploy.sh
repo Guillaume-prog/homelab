@@ -1,1 +1,0 @@
-nixos-rebuild switch --flake . --target-host root@$1

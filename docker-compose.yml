@@ -25,7 +25,6 @@ services:
             - PGID=${gid}
             - TZ=${timezone}
             - VERSION=docker
-            # - PLEX_CLAIM= #optional
         volumes:
             - ${config_path}/plex:/config
             - ${tv_path}:/tv
@@ -93,6 +92,14 @@ services:
         ports:
             - 7878:7878
         restart: unless-stopped
+
+    flaresolverr:
+      image: ghcr.io/flaresolverr/flaresolverr:latest
+      container_name: flaresolverr
+      environment:
+        - LOG_LEVEL = "info";
+      ports:
+        - 8191:8191
 
     prowlarr:
         image: lscr.io/linuxserver/prowlarr:latest
