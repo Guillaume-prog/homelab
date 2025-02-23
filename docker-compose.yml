@@ -30,15 +30,15 @@ services:
             - ${tv_path}:/tv
             - ${movies_path}:/movies
         ports:
-            - 32400:32400
+            - 32400:32400/tcp
+            - 3005:3005/tcp
+            - 8324:8324/tcp
+            - 32469:32469/tcp
             - 1900:1900/udp
-            - 5353:5353/udp
-            - 8324:8324
             - 32410:32410/udp
             - 32412:32412/udp
             - 32413:32413/udp
             - 32414:32414/udp
-            - 32469:32469
         devices:
             - /dev/dri:/dev/dri
         restart: unless-stopped
@@ -72,7 +72,7 @@ services:
             - TZ=${timezone}
         volumes:
             - ${config_path}/sonarr:/config
-            - ${tv_path}:/tv
+            - ${tv_path}:/media
             - ${downloads_path}:/downloads
         ports:
             - 8989:8989
@@ -87,7 +87,7 @@ services:
             - TZ=${timezone}
         volumes:
             - ${config_path}/radarr:/config
-            - ${movies_path}:/movies
+            - ${movies_path}:/media
             - ${downloads_path}:/downloads
         ports:
             - 7878:7878
