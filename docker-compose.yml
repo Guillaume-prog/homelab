@@ -72,7 +72,7 @@ services:
             - TZ=${timezone}
         volumes:
             - ${config_path}/sonarr:/config
-            - ${tv_path}:/media
+            - ${tv_path}:/tv
             - ${downloads_path}:/downloads
         ports:
             - 8989:8989
@@ -87,7 +87,7 @@ services:
             - TZ=${timezone}
         volumes:
             - ${config_path}/radarr:/config
-            - ${movies_path}:/media
+            - ${movies_path}:/movies
             - ${downloads_path}:/downloads
         ports:
             - 7878:7878
