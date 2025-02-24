@@ -51,7 +51,7 @@ services:
             - PGID=${gid}
             - VPN_ENABLED=yes
             - VPN_TYPE=openvpn
-            - LAN_NETWORK=192.168.2.0/24
+            - LAN_NETWORK=192.168.1.0/24
             - NAME_SERVERS=1.1.1.1,1.0.0.1
             - ENABLE_SSL=no
             - HEALTH_CHECK_HOST=one.one.one.one
