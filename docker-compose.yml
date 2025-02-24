@@ -72,7 +72,7 @@ services:
             - TZ=${timezone}
         volumes:
             - ${config_path}/sonarr:/config
-            - ${tv_path}:/tv
+            - ${tv_path}:/tv:rw
             - ${downloads_path}:/downloads
         ports:
             - 8989:8989
@@ -87,7 +87,7 @@ services:
             - TZ=${timezone}
         volumes:
             - ${config_path}/radarr:/config
-            - ${movies_path}:/movies
+            - ${movies_path}:/movies:rw
             - ${downloads_path}:/downloads
         ports:
             - 7878:7878
@@ -110,7 +110,6 @@ services:
             - TZ=${timezone}
         volumes:
             - ${config_path}/prowlarr:/config
-            - ${downloads_path}:/downloads
         ports:
             - 9696:9696
         restart: unless-stopped
