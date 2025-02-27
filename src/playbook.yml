@@ -1,4 +1,17 @@
 ---
 - hosts: TerraMaster
   tasks:
-  - ping:
+    - name: copy Docker Compose files
+      ansible.builtin.template:
+        src: docker-compose.yml.j2
+        dest: /home/yriel/docker-compose.yml
+
+    - name: Docker compose down
+      ansible.builtin.shell:
+        chdir: /home/yriel
+        cmd: /Volume1/@apps/DockerEngine/dockerd/bin/docker-compose down
+
+    - name: Docker compose up
+      ansible.builtin.shell:
+        chdir: /home/yriel
+        cmd: /Volume1/@apps/DockerEngine/dockerd/bin/docker-compose up -d

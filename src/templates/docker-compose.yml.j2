@@ -4,12 +4,12 @@ services:
         image: jc21/nginx-proxy-manager:latest
         container_name: nginx-proxy-manager
         environment:
-            - PUID=${uid}
-            - PGID=${gid}
-            - TZ=${timezone}
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
+            - TZ={{ config_timezone }}
         volumes:
-            - ${config_path}/proxy/data:/data
-            - ${config_path}/proxy/letsencrypt:/etc/letsencrypt
+            - {{ config_config_path }}/proxy/data:/data
+            - {{ config_config_path }}/proxy/letsencrypt:/etc/letsencrypt
         ports:
             - 81:81
             - 80:80
@@ -21,14 +21,14 @@ services:
         image: lscr.io/linuxserver/plex:latest
         container_name: plex
         environment:
-            - PUID=${uid}
-            - PGID=${gid}
-            - TZ=${timezone}
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
+            - TZ={{ config_timezone }}
             - VERSION=docker
         volumes:
-            - ${config_path}/plex:/config
-            - ${tv_path}:/tv
-            - ${movies_path}:/movies
+            - {{ config_config_path }}/plex:/config
+            - {{ config_tv_path }}:/tv
+            - {{ config_movies_path }}:/movies
         ports:
             - 32400:32400/tcp
             - 3005:3005/tcp
@@ -47,8 +47,8 @@ services:
         image: dyonr/qbittorrentvpn
         container_name: qbittorrent
         environment:
-            - PUID=${uid}
-            - PGID=${gid}
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
             - VPN_ENABLED=yes
             - VPN_TYPE=openvpn
             - LAN_NETWORK=192.168.1.0/24
@@ -56,8 +56,8 @@ services:
             - ENABLE_SSL=no
             - HEALTH_CHECK_HOST=one.one.one.one
         volumes:
-            - ${config_path}/qbittorrent:/config
-            - ${downloads_path}:/downloads
+            - {{ config_config_path }}/qbittorrent:/config
+            - {{ config_download_path }}:/downloads
         ports:
             - 8080:8080
         privileged: true
@@ -67,13 +67,13 @@ services:
         image: lscr.io/linuxserver/sonarr:latest
         container_name: sonarr
         environment:
-            - PUID=${uid}
-            - PGID=${gid}
-            - TZ=${timezone}
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
+            - TZ={{ config_timezone }}
         volumes:
-            - ${config_path}/sonarr:/config
-            - ${tv_path}:/tv:rw
-            - ${downloads_path}:/downloads
+            - {{ config_config_path }}/sonarr:/config
+            - {{ config_tv_path }}:/tv:rw
+            - {{ config_download_path }}:/downloads
         ports:
             - 8989:8989
         restart: unless-stopped
@@ -82,13 +82,13 @@ services:
         image: lscr.io/linuxserver/radarr:latest
         container_name: radarr
         environment:
-            - PUID=${uid}
-            - PGID=${gid}
-            - TZ=${timezone}
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
+            - TZ={{ config_timezone }}
         volumes:
-            - ${config_path}/radarr:/config
-            - ${movies_path}:/movies:rw
-            - ${downloads_path}:/downloads
+            - {{ config_config_path }}/radarr:/config
+            - {{ config_movies_path }}:/movies:rw
+            - {{ config_download_path }}:/downloads
         ports:
             - 7878:7878
         restart: unless-stopped
@@ -105,11 +105,11 @@ services:
         image: lscr.io/linuxserver/prowlarr:latest
         container_name: prowlarr
         environment:
-            - PUID=${uid}
-            - PGID=${gid}
-            - TZ=${timezone}
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
+            - TZ={{ config_timezone }}
         volumes:
-            - ${config_path}/prowlarr:/config
+            - {{ config_config_path }}/prowlarr:/config
         ports:
             - 9696:9696
         restart: unless-stopped
@@ -118,11 +118,11 @@ services:
         image: lscr.io/linuxserver/overseerr:latest
         container_name: overseerr
         environment:
-            - PUID=${uid}
-            - PGID=${gid}
-            - TZ=${timezone}
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
+            - TZ={{ config_timezone }}
         volumes:
-            - ${config_path}/overseerr:/config
+            - {{ config_config_path }}/overseerr:/config
         ports:
             - 5055:5055
         restart: unless-stopped
@@ -132,10 +132,10 @@ services:
         image: ghcr.io/homarr-labs/homarr:latest
         container_name: homarr
         environment:
-            - SECRET_ENCRYPTION_KEY=${homarr_key}
+            - SECRET_ENCRYPTION_KEY={{ config_homarr_key }}
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - ${config_path}/homarr:/appdata
+            - {{ config_config_path }}/homarr:/appdata
         ports:
             - '7575:7575'
         restart: unless-stopped
