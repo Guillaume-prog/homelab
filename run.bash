@@ -1,0 +1,1 @@
+ansible-playbook -i src/hosts.ini src/playbook.yml

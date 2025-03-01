@@ -3,4 +3,4 @@ result/
 .env.secret
 
 .direnv/
-.envrc
+.vault_password

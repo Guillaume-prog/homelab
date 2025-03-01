@@ -1,3 +1,5 @@
+server_ip: 192.168.1.200
+
 config_timezone: Etc/UTC
 config_uid: 0
 config_gid: 0
@@ -8,4 +10,4 @@ config_download_path: /Volume1/public/downloads
 config_movies_path: /Volume1/public/movies
 config_tv_path: /Volume1/public/tv-shows
 
-config_homarr_key: 537ac7ed903b0ea9b02b68efa418e0ccd1f18b386ee4be9cef3782629316284b
+config_homarr_key: "{{ vault_homarr_key }}"

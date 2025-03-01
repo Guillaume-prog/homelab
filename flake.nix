@@ -16,10 +16,6 @@
         pkgs.python3
         pkgs.ansible
       ];
-      shellHook = ''
-        export PS1="\[\e[1;32m\]snake 🐍  \[\e[1;34m\]\$(realpath --relative-to=$PWD $PWD) \[\e[0m\]$ "
-        clear
-      '';
     };
   });
 }
