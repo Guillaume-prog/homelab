@@ -1,11 +1,14 @@
 server_ip: 192.168.1.200
+config_lan_network: 192.168.1.0/24
 
 config_timezone: Etc/UTC
 config_uid: 0
 config_gid: 0
 
 config_config_path: /home/yriel/config
-config_download_path: /Volume1/public/downloads
+
+config_download_path: /Volume2/torrents
+config_transcode_path: /Volume2/transcode
 
 config_movies_path: /Volume1/public/movies
 config_tv_path: /Volume1/public/tv-shows

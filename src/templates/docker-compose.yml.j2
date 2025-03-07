@@ -29,6 +29,7 @@ services:
             - {{ config_config_path }}/plex:/config
             - {{ config_tv_path }}:/tv
             - {{ config_movies_path }}:/movies
+            - {{ config_transcode_path }}:/transcode
         network_mode: "host"
         devices:
             - /dev/dri:/dev/dri
@@ -42,7 +43,7 @@ services:
             - PGID={{ config_gid }}
             - VPN_ENABLED=yes
             - VPN_TYPE=openvpn
-            - LAN_NETWORK=192.168.1.0/24
+            - LAN_NETWORK={{ config_lan_network }}
             - NAME_SERVERS=1.1.1.1,1.0.0.1
             - ENABLE_SSL=no
             - HEALTH_CHECK_HOST=one.one.one.one
