@@ -132,6 +132,16 @@ services:
             - '7575:7575'
         restart: unless-stopped
 
+    # Budget
+    actual-budget :
+        image: actualbudget/actual-server:latest
+        container_name: actual-server
+        volumes:
+            -  {{ config_config_path }}/actual:/data
+        ports:
+            - '5006:5006'
+        restart: unless-stopped
+
     # Auto updates docker images
     watchtower:
         image: containrrr/watchtower
