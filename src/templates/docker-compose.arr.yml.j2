@@ -8,8 +8,8 @@ services:
             - PGID={{ config_gid }}
             - TZ={{ config_timezone }}
         volumes:
-            - {{ config_config_path }}/proxy/data:/data
-            - {{ config_config_path }}/proxy/letsencrypt:/etc/letsencrypt
+            - {{ arr_config_path }}/proxy/data:/data
+            - {{ arr_config_path }}/proxy/letsencrypt:/etc/letsencrypt
         ports:
             - 81:81
             - 80:80
@@ -26,10 +26,10 @@ services:
             - TZ={{ config_timezone }}
             - VERSION=docker
         volumes:
-            - {{ config_config_path }}/plex:/config
-            - {{ config_tv_path }}:/tv
-            - {{ config_movies_path }}:/movies
-            - {{ config_transcode_path }}:/transcode
+            - {{ arr_config_path }}/plex:/config
+            - {{ arr_tv_path }}:/tv
+            - {{ arr_movies_path }}:/movies
+            - {{ arr_transcode_path }}:/transcode
         network_mode: "host"
         devices:
             - /dev/dri:/dev/dri
@@ -48,8 +48,8 @@ services:
             - ENABLE_SSL=no
             - HEALTH_CHECK_HOST=one.one.one.one
         volumes:
-            - {{ config_config_path }}/qbittorrent:/config
-            - {{ config_download_path }}:/downloads
+            - {{ arr_config_path }}/qbittorrent:/config
+            - {{ arr_download_path }}:/downloads
         ports:
             - 8080:8080
         privileged: true
@@ -63,9 +63,9 @@ services:
             - PGID={{ config_gid }}
             - TZ={{ config_timezone }}
         volumes:
-            - {{ config_config_path }}/sonarr:/config
-            - {{ config_tv_path }}:/tv:rw
-            - {{ config_download_path }}:/downloads
+            - {{ arr_config_path }}/sonarr:/config
+            - {{ arr_tv_path }}:/tv:rw
+            - {{ arr_download_path }}:/downloads
         ports:
             - 8989:8989
         restart: unless-stopped
@@ -78,9 +78,9 @@ services:
             - PGID={{ config_gid }}
             - TZ={{ config_timezone }}
         volumes:
-            - {{ config_config_path }}/radarr:/config
-            - {{ config_movies_path }}:/movies:rw
-            - {{ config_download_path }}:/downloads
+            - {{ arr_config_path }}/radarr:/config
+            - {{ arr_movies_path }}:/movies:rw
+            - {{ arr_download_path }}:/downloads
         ports:
             - 7878:7878
         restart: unless-stopped
@@ -101,7 +101,7 @@ services:
             - PGID={{ config_gid }}
             - TZ={{ config_timezone }}
         volumes:
-            - {{ config_config_path }}/prowlarr:/config
+            - {{ arr_config_path }}/prowlarr:/config
         ports:
             - 9696:9696
         restart: unless-stopped
@@ -114,7 +114,7 @@ services:
             - PGID={{ config_gid }}
             - TZ={{ config_timezone }}
         volumes:
-            - {{ config_config_path }}/overseerr:/config
+            - {{ arr_config_path }}/overseerr:/config
         ports:
             - 5055:5055
         restart: unless-stopped
@@ -124,10 +124,10 @@ services:
         image: ghcr.io/homarr-labs/homarr:latest
         container_name: homarr
         environment:
-            - SECRET_ENCRYPTION_KEY={{ config_homarr_key }}
+            - SECRET_ENCRYPTION_KEY={{ arr_homarr_key }}
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - {{ config_config_path }}/homarr:/appdata
+            - {{ arr_config_path }}/homarr:/appdata
         ports:
             - '7575:7575'
         restart: unless-stopped
@@ -137,7 +137,7 @@ services:
         image: actualbudget/actual-server:latest
         container_name: actual-server
         volumes:
-            -  {{ config_config_path }}/actual:/data
+            -  {{ arr_config_path }}/actual:/data
         ports:
             - '5006:5006'
         restart: unless-stopped

@@ -6,13 +6,20 @@ config_timezone: Etc/UTC
 config_uid: 0
 config_gid: 0
 
-config_config_path: "/home/{{ server_user }}/config"
+# ARR Stack
 
-media_pool: /mnt/main-pool/media
+arr_root_path: "/home/{{ server_user }}/arr"
+arr_config_path: "{{ arr_root_path }}/config"
 
-config_movies_path: "{{ media_pool }}/movies"
-config_tv_path: "{{ media_pool }}/tv-shows"
-config_download_path: "{{ media_pool }}/torrents"
-config_transcode_path: "{{ media_pool }}/transcode"
+arr_media_pool: /mnt/main-pool/media
 
-config_homarr_key: "{{ vault_homarr_key }}"
+arr_movies_path: "{{ arr_media_pool }}/movies"
+arr_tv_path: "{{ arr_media_pool }}/tv-shows"
+arr_download_path: "{{ arr_media_pool }}/torrents"
+arr_transcode_path: "{{ arr_media_pool }}/transcode"
+
+arr_homarr_key: "{{ vault_arr_homarr_key }}"
+
+# Immich
+
+imm_postgres_password: "{{ vault_imm_postgres_password }}"

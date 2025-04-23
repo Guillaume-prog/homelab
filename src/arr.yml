@@ -3,11 +3,11 @@
   tasks:
     - name: copy Docker Compose files
       ansible.builtin.template:
-        src: docker-compose.yml.j2
-        dest: "/home/{{ server_user }}/docker-compose.yml"
+        src: docker-compose.arr.yml.j2
+        dest: "{{ arr_root_path }}/docker-compose.yml"
 
     - name: Restart services
       become: true
       ansible.builtin.shell:
-        chdir: "/home/{{ server_user }}"
+        chdir: "{{ arr_root_path }}"
         cmd: docker compose up -d
