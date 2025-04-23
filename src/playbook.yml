@@ -4,9 +4,10 @@
     - name: copy Docker Compose files
       ansible.builtin.template:
         src: docker-compose.yml.j2
-        dest: /home/yriel/docker-compose.yml
+        dest: "/home/{{ server_user }}/docker-compose.yml"
 
     - name: Restart services
+      become: true
       ansible.builtin.shell:
-        chdir: /home/yriel
-        cmd: /Volume1/@apps/DockerEngine/dockerd/bin/docker-compose up -d
+        chdir: "/home/{{ server_user }}"
+        cmd: docker compose up -d

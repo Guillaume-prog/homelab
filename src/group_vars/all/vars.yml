@@ -1,16 +1,18 @@
 server_ip: 192.168.1.200
+server_user: truenas_admin
 config_lan_network: 192.168.1.0/24
 
 config_timezone: Etc/UTC
 config_uid: 0
 config_gid: 0
 
-config_config_path: /home/yriel/config
+config_config_path: "/home/{{ server_user }}/config"
 
-config_download_path: /Volume2/torrents
-config_transcode_path: /Volume2/transcode
+media_pool: /mnt/main-pool/media
 
-config_movies_path: /Volume1/public/movies
-config_tv_path: /Volume1/public/tv-shows
+config_movies_path: "{{ media_pool }}/movies"
+config_tv_path: "{{ media_pool }}/tv-shows"
+config_download_path: "{{ media_pool }}/torrents"
+config_transcode_path: "{{ media_pool }}/transcode"
 
 config_homarr_key: "{{ vault_homarr_key }}"

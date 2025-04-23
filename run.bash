@@ -1,1 +1,1 @@
-ansible-playbook -i src/hosts.ini src/playbook.yml
+ansible-playbook -i src/hosts.ini src/playbook.yml --ask-become-pass
