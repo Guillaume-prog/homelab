@@ -1,0 +1,13 @@
+---
+- hosts: TerraMaster
+  tasks:
+    - name: copy Docker Compose files
+      ansible.builtin.template:
+        src: com/docker-compose.yml.j2
+        dest: "{{ com_root_path }}/docker-compose.yml"
+
+    - name: Restart services
+      become: true
+      ansible.builtin.shell:
+        chdir: "{{ com_root_path }}"
+        cmd: docker compose up -d

@@ -1,1 +1,1 @@
-ansible-playbook -i src/inventories/hosts.ini src/arr.yml
+ansible-playbook -i src/inventories/hosts.ini src/$1.playbook.yml

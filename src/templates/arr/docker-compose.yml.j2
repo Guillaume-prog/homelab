@@ -1,0 +1,171 @@
+services:
+    # Media servers
+    # plex:
+    #     image: plexinc/pms-docker:latest
+    #     container_name: plex
+    #     environment:
+    #         - PLEX_UID={{ config_uid }}
+    #         - PLEX_GID={{ config_gid }}
+    #         - TZ={{ config_timezone }}
+    #         - VERSION=docker
+    #     volumes:
+    #         - {{ arr_config_path }}/plex/config:/config
+    #         - {{ arr_config_path }}/plex/transcode:/transcode
+    #         - {{ arr_tv_path }}:/media/tv
+    #         - {{ arr_movies_path }}:/media/movies
+    #     devices:
+    #         - /dev/dri:/dev/dri
+    #     security_opt:
+    #         - apparmor=unconfined # potential fix for trueNAS
+    #     network_mode: "host"
+    #     restart: unless-stopped
+
+    # jellyfin:
+    #     image: jellyfin/jellyfin
+    #     container_name: jellyfin
+    #     environment:
+    #         - PUID={{ config_uid }}
+    #         - PGID={{ config_gid }}
+    #         - TZ={{ config_timezone }}
+    #         - JELLYFIN_PublishedServerUrl=http://jellyfin.lilougui.xyz
+    #     volumes:
+    #         - {{ arr_config_path }}/jellyfin/config:/config
+    #         - {{ arr_config_path }}/jellyfin/cache:/cache
+    #         - {{ arr_tv_path }}:/media/tv:ro
+    #         - {{ arr_movies_path }}:/media/movies:ro
+    #         # Optional - extra fonts to be used during transcoding with subtitle burn-in
+    #         # - /path/to/fonts:/usr/local/share/fonts/custom:ro
+    #     devices:
+    #         - /dev/dri:/dev/dri
+    #     network_mode: 'host'
+    #     restart: 'unless-stopped'
+
+    # Obtaining the media
+
+    qbittorrent:
+        image: dyonr/qbittorrentvpn
+        container_name: qbittorrent
+        environment:
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
+            - VPN_ENABLED=yes
+            - VPN_TYPE=openvpn
+            - LAN_NETWORK={{ config_lan_network }}
+            - NAME_SERVERS=1.1.1.1,1.0.0.1
+            - ENABLE_SSL=no
+            - HEALTH_CHECK_HOST=one.one.one.one
+        volumes:
+            - {{ arr_config_path }}/qbittorrent:/config
+            - {{ arr_download_path }}:/downloads
+        ports:
+            - 8080:8080
+        privileged: true
+        restart: unless-stopped
+
+    sonarr:
+        image: lscr.io/linuxserver/sonarr:latest
+        container_name: sonarr
+        environment:
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
+            - TZ={{ config_timezone }}
+        volumes:
+            - {{ arr_config_path }}/sonarr:/config
+            - {{ arr_tv_path }}:/tv:rw
+            - {{ arr_download_path }}:/downloads
+        ports:
+            - 8989:8989
+        restart: unless-stopped
+
+    radarr:
+        image: lscr.io/linuxserver/radarr:latest
+        container_name: radarr
+        environment:
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
+            - TZ={{ config_timezone }}
+        volumes:
+            - {{ arr_config_path }}/radarr:/config
+            - {{ arr_movies_path }}:/movies:rw
+            - {{ arr_download_path }}:/downloads
+        ports:
+            - 7878:7878
+        restart: unless-stopped
+
+    bazarr:
+        image: lscr.io/linuxserver/bazarr:latest
+        container_name: bazarr
+        environment:
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
+            - TZ={{ config_timezone }}
+        volumes:
+            - {{ arr_config_path }}/bazarr:/config
+            - {{ arr_movies_path }}:/movies:rw
+            - {{ arr_tv_path }}:/tv:rw
+        ports:
+        - 6767:6767
+        restart: unless-stopped
+
+    flaresolverr:
+      image: ghcr.io/flaresolverr/flaresolverr:latest
+      container_name: flaresolverr
+      environment:
+        - LOG_LEVEL = "info";
+      ports:
+        - 8191:8191
+
+    prowlarr:
+        image: lscr.io/linuxserver/prowlarr:latest
+        container_name: prowlarr
+        environment:
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
+            - TZ={{ config_timezone }}
+        volumes:
+            - {{ arr_config_path }}/prowlarr:/config
+        ports:
+            - 9696:9696
+        restart: unless-stopped
+
+    overseerr:
+        image: lscr.io/linuxserver/overseerr:latest
+        container_name: overseerr
+        environment:
+            - PUID={{ config_uid }}
+            - PGID={{ config_gid }}
+            - TZ={{ config_timezone }}
+        volumes:
+            - {{ arr_config_path }}/overseerr:/config
+        ports:
+            - 5055:5055
+        restart: unless-stopped
+
+    plexautolanguages:
+        image: remirigal/plex-auto-languages:latest
+        container_name: plexautolanguages
+        environment:
+        - PLEX_URL=http://{{ server_ip }}:32400
+        - PLEX_TOKEN={{ arr_plex_token }}
+        - TZ={{ config_timezone }}
+        volumes:
+        - {{ arr_config_path }}/plex-auto-languages:/config
+
+    tinymediamanager:
+        image: tinymediamanager/tinymediamanager:latest
+        container_name: tinymediamanager
+        environment:
+        - USER_ID={{ config_uid }}
+        - GROUP_ID={{ config_gid }}
+        - LC_ALL=en_US.UTF-8 # force UTF8
+        - LANG=en_US.UTF-8   # force UTF8
+        - ALLOW_DIRECT_VNC=true
+        - PASSWORD={{ arr_tmm_password }}
+        volumes:
+        - {{ arr_config_path }}/tiny-media-manager:/data
+        - {{ arr_movies_path }}:/media/movies
+        - {{ arr_tv_path }}:/media/tv_shows
+        ports:
+        - 5900:5900 # VNC port
+        - 4000:4000 # Web UI
+        restart: unless-stopped

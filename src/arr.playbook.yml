@@ -3,7 +3,7 @@
   tasks:
     - name: copy Docker Compose files
       ansible.builtin.template:
-        src: docker-compose.arr.yml.j2
+        src: arr/docker-compose.yml.j2
         dest: "{{ arr_root_path }}/docker-compose.yml"
 
     - name: Restart services
