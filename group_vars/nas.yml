@@ -1,0 +1,5 @@
+docker_stacks:
+
+puid: 0
+pgid: 0
+nas_media_path: /mnt/main-pool/media/

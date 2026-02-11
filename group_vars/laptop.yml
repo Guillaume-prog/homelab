@@ -1,0 +1,6 @@
+docker_stacks:
+  - qbittorrent
+
+puid: 0
+pgid: 0
+nas_media_path: /mnt/nas
