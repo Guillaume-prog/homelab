@@ -1,0 +1,88 @@
+pages:
+  - name: Home
+    # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+    # hide-desktop-navigation: true
+    columns:
+      - size: full
+        widgets:
+          - type: search
+
+          - type: monitor
+            cache: 1m
+            title: Servarr
+            sites:
+              - title: Plex
+                url: https://plex.chaoshome.dev/web
+                icon: di:plex
+              - title: Overseerr
+                url: https://overseerr.chaoshome.dev
+                icon: di:overseerr
+              - title: Sonarr
+                url: https://sonarr.chaoshome.dev
+                icon: di:sonarr
+              - title: Radarr
+                url: https://radarr.chaoshome.dev
+                icon: di:radarr
+              - title: QBittorrent
+                url: http://192.168.1.201:8080
+                icon: di:qbittorrent
+
+          - type: monitor
+            cache: 1m
+            title: Self-Hosted
+            sites:
+              - title: Immich
+                url: https://immich.chaoshome.dev
+                icon: di:immich
+              - title: Nextcloud
+                url: https://overseerr.chaoshome.dev
+                icon: di:nextcloud
+              - title: Vaultwarden
+                url: https://sonarr.chaoshome.dev
+                icon: di:vaultwarden
+
+          - type: monitor
+            cache: 1m
+            title: OS
+            sites:
+              - title: TrueNAS
+                url: https://nas.chaoshome.dev
+                icon: di:truenas
+              - title: Home Assistant
+                url: http://home.chaoshome.dev
+                icon: di:home-assistant
+              # - title: Portainer
+              #   url: https://192.168.1.200:31015/#!/auth
+              #   icon: di:portainer-alt
+
+          - type: videos
+            # style: vertical-list
+            # collapse-after: 6
+            channels:
+              - UCUBsjvdHcwZd3ztdY1Zadcw # Gem
+              - UChFur_NwVSbUozOcF_F2kMg # Mumbo
+              - UCR9Gcq0CMm6YgTzsDxAxjOQ # Grian
+              - UCFKDEp9si4RmHFWJW1vYsMA # Etho
+
+      - size: small
+        widgets:
+          - type: server-stats
+            servers:
+              - type: local
+                name: Potato
+
+          - type: server-stats
+            servers:
+              - type: remote
+                name: NAS
+                url: http://192.168.1.200:27973
+
+          - type: calendar
+            first-day-of-week: monday
+
+          - type: weather
+            location: Nantes, France
+            units: metric # alternatively "imperial"
+            hour-format: 24h # alternatively "24h"
+            # Optionally hide the location from being displayed in the widget
+            # hide-location: true

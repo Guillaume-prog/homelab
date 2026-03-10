@@ -1,19 +1,19 @@
 - name: Create stack directory
   file:
-    path: "/opt/stacks/{{ item }}"
+    path: "{{ stacks_root_path }}/{{ item }}"
     state: directory
 
 - name: Copy stack files
   copy:
     src: "../../stacks/{{ item }}"
-    dest: "/opt/stacks/"
+    dest: "{{ stacks_root_path }}/"
 
 - name: Render env file
   template:
     src: "../../stacks/{{ item }}/env.j2"
-    dest: "/opt/stacks/{{ item }}/.env"
+    dest: "{{ stacks_root_path }}/{{ item }}/.env"
 
 - name: Deploy stack
   community.docker.docker_compose_v2:
-    project_src: "/opt/stacks/{{ item }}"
+    project_src: "{{ stacks_root_path }}/{{ item }}"
     state: present

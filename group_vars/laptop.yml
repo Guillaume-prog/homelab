@@ -1,6 +1,10 @@
 docker_stacks:
+  - glance
   - qbittorrent
+
+stacks_root_path: /opt/stacks/
 
 puid: 0
 pgid: 0
+tz: Europe/Paris
 nas_media_path: /mnt/nas

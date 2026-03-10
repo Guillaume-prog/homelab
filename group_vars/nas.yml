@@ -1,5 +1,8 @@
-docker_stacks:
+docker_stacks: []
+
+stacks_root_path: /home/truenas_admin/stacks
 
 puid: 0
 pgid: 0
+tz: Europe/Paris
 nas_media_path: /mnt/main-pool/media/
