@@ -1,6 +1,5 @@
 docker_stacks:
   - glance
-  - qbittorrent
 
 stacks_root_path: /opt/stacks/
 

@@ -1,4 +1,7 @@
-docker_stacks: []
+docker_stacks:
+  - qbittorrent
+  - glance-agent
+  - proxy
 
 stacks_root_path: /home/truenas_admin/stacks
 
