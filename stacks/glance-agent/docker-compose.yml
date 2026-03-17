@@ -1,0 +1,12 @@
+services:
+  glance-agent:
+    container_name: glance-agent
+    image: glanceapp/agent
+    # environment:
+    # Optional, leave empty or comment out for no authentication
+    # TOKEN: your_auth_token_here
+    volumes:
+      - /mnt/main-pool:/storage:ro
+    ports:
+      - 27973:27973
+    restart: unless-stopped
