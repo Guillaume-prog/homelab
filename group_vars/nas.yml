@@ -2,10 +2,12 @@ docker_stacks:
   - qbittorrent
   - glance-agent
   - proxy
+  - arr
 
 stacks_root_path: /home/truenas_admin/stacks
+config_root_path: /home/truenas_admin/config
+nas_media_path: /mnt/main-pool/media/
 
 puid: 0
 pgid: 0
 tz: Europe/Paris
-nas_media_path: /mnt/main-pool/media/

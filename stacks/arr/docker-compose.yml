@@ -1,0 +1,79 @@
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    env_file:
+      - .env
+    volumes:
+      - ${CFG_PATH}/sonarr:/config
+      - ${ARR_TV_PATH}:/tv:rw
+      - ${ARR_DOWNLOAD_PATH}:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    env_file:
+      - .env
+    volumes:
+      - ${CFG_PATH}/radarr:/config
+      - ${ARR_MOVIES_PATH}:/movies:rw
+      - ${ARR_DOWNLOAD_PATH}:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    env_file:
+      - .env
+    volumes:
+      - ${CFG_PATH}/bazarr:/config
+      - ${ARR_MOVIES_PATH}:/movies:rw
+      - ${ARR_TV_PATH}:/tv:rw
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL = "info";
+    ports:
+      - 8191:8191
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    env_file:
+      - .env
+    volumes:
+      - ${CFG_PATH}/prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+
+  overseerr:
+    image: lscr.io/linuxserver/overseerr:latest
+    container_name: overseerr
+    env_file:
+      - .env
+    volumes:
+      - ${CFG_PATH}/overseerr:/config
+    ports:
+      - 5055:5055
+    restart: unless-stopped
+
+  plexautolanguages:
+    image: remirigal/plex-auto-languages:latest
+    container_name: plexautolanguages
+    environment:
+      - PLEX_URL=${ARR_PLEX_URL}
+      - PLEX_TOKEN=${ARR_PLEX_TOKEN}
+      - TZ=${TZ}
+    volumes:
+      - ${CFG_PATH}/plex-auto-languages:/config
