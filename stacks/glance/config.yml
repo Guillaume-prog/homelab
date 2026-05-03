@@ -24,7 +24,7 @@ pages:
                 url: https://radarr.chaoshome.dev
                 icon: di:radarr
               - title: QBittorrent
-                url: http://192.168.1.201:8080
+                url: https://qbittorrent.chaoshome.dev
                 icon: di:qbittorrent
 
           - type: monitor
@@ -69,7 +69,7 @@ pages:
           - type: server-stats
             servers:
               - type: local
-                name: Potato
+                name: Optiplex
 
           - type: server-stats
             servers:
