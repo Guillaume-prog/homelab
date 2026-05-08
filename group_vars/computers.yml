@@ -2,8 +2,11 @@ docker_stacks:
   - glance
 
 stacks_root_path: /opt/stacks/
+# config_root_path: /homelab/config
+
+nas_media_path: /mnt/nas
+nas_pictures_path: /mnt/pictures
 
 puid: 0
 pgid: 0
 tz: Europe/Paris
-nas_media_path: /mnt/nas

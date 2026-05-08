@@ -17,15 +17,18 @@ pages:
               - title: Overseerr
                 url: https://overseerr.chaoshome.dev
                 icon: di:overseerr
+              - title: QBittorrent
+                url: https://qbittorrent.chaoshome.dev
+                icon: di:qbittorrent
               - title: Sonarr
                 url: https://sonarr.chaoshome.dev
                 icon: di:sonarr
               - title: Radarr
                 url: https://radarr.chaoshome.dev
                 icon: di:radarr
-              - title: QBittorrent
-                url: https://qbittorrent.chaoshome.dev
-                icon: di:qbittorrent
+              - title: Bazarr
+                url: https://bazarr.chaoshome.dev
+                icon: di:bazarr
 
           - type: monitor
             cache: 1m
