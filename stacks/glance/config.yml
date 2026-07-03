@@ -37,9 +37,9 @@ pages:
               - title: Immich
                 url: https://immich.chaoshome.dev
                 icon: di:immich
-              - title: Nextcloud
-                url: https://overseerr.chaoshome.dev
-                icon: di:nextcloud
+              - title: Minepanel
+                url: https://minepanel.chaoshome.dev
+                icon: di:minepanel
               - title: Vaultwarden
                 url: https://sonarr.chaoshome.dev
                 icon: di:vaultwarden
