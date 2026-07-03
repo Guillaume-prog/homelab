@@ -7,12 +7,13 @@ Kudos to kitforbes for his [example project](https://github.com/kitforbes/ansibl
 To set up project, run the following :
 
 ```bash
-echo "use flake" >> .envrc
 direnv allow
 ```
+
+And add the vault_password (found in Bitwarden) to `.vault_password`
 
 ## Running the apps
 
 ```
-bash start.bash
+bash run.bash
 ```
