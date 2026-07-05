@@ -1,9 +1,8 @@
 docker_stacks:
-  - qbittorrent
   - glance-agent
+  # - plex
+  - qbittorrent
   - proxy
-  - arr
-  - immich
 
 stacks_root_path: /home/truenas_admin/stacks
 config_root_path: /home/truenas_admin/config

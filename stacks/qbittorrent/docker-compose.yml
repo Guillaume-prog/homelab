@@ -11,7 +11,7 @@ services:
       - 6881:6881 # Torrent TCP
       - 6881:6881/udp # Torrent UDP
     volumes:
-      - ./gluetun:/gluetun
+      - ${CFG_PATH}/gluetun:/gluetun
     env_file:
       - .env
     restart: unless-stopped
@@ -25,6 +25,6 @@ services:
     env_file:
       - .env
     volumes:
-      - ./qbittorrent:/config
+      - ${CFG_PATH}/qbittorrent:/config
       - ${DOWNLOADS_PATH}:/downloads
     restart: unless-stopped

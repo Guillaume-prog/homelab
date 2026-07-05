@@ -6,8 +6,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
+      - ${CFG_PATH}/data:/data
+      - ${CFG_PATH}/letsencrypt:/etc/letsencrypt
     ports:
       - 81:81
       - 80:80
