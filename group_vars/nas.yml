@@ -2,6 +2,7 @@ docker_stacks:
   - glance-agent
   # - plex
   - qbittorrent
+  # - syncthing
   - proxy
 
 stacks_root_path: /home/truenas_admin/stacks
@@ -9,7 +10,3 @@ config_root_path: /home/truenas_admin/config
 
 nas_media_path: /mnt/main-pool/media
 nas_pictures_path: /mnt/main-pool/pictures
-
-puid: 0
-pgid: 0
-tz: Europe/Paris

@@ -1,13 +1,12 @@
 docker_stacks:
+  # - arr
   - glance
+  # - immich
   - minepanel
+  # - proxy
 
 stacks_root_path: /homelab/stacks
 config_root_path: /homelab/config
 
 nas_media_path: /mnt/nas
 nas_pictures_path: /mnt/pictures
-
-puid: 0
-pgid: 0
-tz: Europe/Paris
