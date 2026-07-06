@@ -1,0 +1,12 @@
+services:
+  syncthing:
+    image: syncthing/syncthing
+    container_name: syncthing
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - STGUIADDRESS=
+    volumes:
+      - ${SYNCTHING_CONFIG_PATH}:/var/syncthing
+    network_mode: host
+    restart: unless-stopped
