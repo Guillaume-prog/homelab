@@ -1,5 +1,6 @@
 docker_stacks:
   - glance-agent
+  - netbird
   # - plex
   - qbittorrent
   # - syncthing
