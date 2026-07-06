@@ -1,0 +1,10 @@
+services:
+  plexautolanguages:
+    image: remirigal/plex-auto-languages:latest
+    container_name: plexautolanguages
+    environment:
+      - PLEX_URL=${ARR_PLEX_URL}
+      - PLEX_TOKEN=${ARR_PLEX_TOKEN}
+      - TZ=${TZ}
+    volumes:
+      - ${CFG_PATH}/plex-auto-languages:/config
