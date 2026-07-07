@@ -3,6 +3,7 @@ docker_stacks:
   - glance
   # - immich
   - minepanel
+  - netbird
   # - proxy
 
 stacks_root_path: /homelab/stacks
