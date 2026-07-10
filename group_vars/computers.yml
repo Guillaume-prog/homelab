@@ -1,5 +1,5 @@
 docker_stacks:
-  # - arr
+  - arr
   - glance
   # - immich
   - minepanel
