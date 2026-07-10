@@ -39,10 +39,7 @@ pages:
                 icon: di:immich
               - title: Minepanel
                 url: https://minepanel.chaoshome.dev
-                icon: di:minepanel
-              - title: Vaultwarden
-                url: https://sonarr.chaoshome.dev
-                icon: di:vaultwarden
+                icon: di:minecraft
 
           - type: monitor
             cache: 1m
@@ -54,9 +51,17 @@ pages:
               - title: Home Assistant
                 url: http://home.chaoshome.dev
                 icon: di:home-assistant
-              # - title: Portainer
-              #   url: https://192.168.1.200:31015/#!/auth
-              #   icon: di:portainer-alt
+
+          - type: monitor
+            cache: 1m
+            title: Syncthing
+            sites:
+              - title: NAS Syncthing
+                url: https://syncthing-truenas.chaoshome.dev
+                icon: di:syncthing
+              - title: Optiplex Syncthing
+                url: https://syncthing-optiplex.chaoshome.dev
+                icon: di:syncthing
 
           - type: videos
             # style: vertical-list

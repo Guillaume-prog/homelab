@@ -3,7 +3,7 @@ docker_stacks:
   - netbird
   # - plex
   - qbittorrent
-  # - syncthing
+  - syncthing
   - proxy
 
 stacks_root_path: /home/truenas_admin/stacks
