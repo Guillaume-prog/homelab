@@ -5,6 +5,7 @@ docker_stacks:
   - minepanel
   - netbird
   # - proxy
+  - syncthing
 
 stacks_root_path: /homelab/stacks
 config_root_path: /homelab/config
