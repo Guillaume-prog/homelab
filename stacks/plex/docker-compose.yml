@@ -1,10 +1,26 @@
 services:
+  pms-docker:
+    image: plexinc/pms-docker
+    container_name: plex
+    network_mode: host
+    environment:
+      - PLEX_UID=${PUID}
+      - PLEX_GID=${PGID}
+      - TZ=${TZ}
+      - PLEX_CLAIM=${PLEX_CLAIM}
+    volumes:
+      - ${CFG_PATH}/plex:/config
+      - ${PLEX_TRANSCODE_PATH}:/transcode
+      - ${PLEX_MEDIA_PATH}:/data
+    devices:
+      - /dev/dri:/dev/dri
+
   plexautolanguages:
     image: remirigal/plex-auto-languages:latest
     container_name: plexautolanguages
     environment:
-      - PLEX_URL=${ARR_PLEX_URL}
-      - PLEX_TOKEN=${ARR_PLEX_TOKEN}
+      - PLEX_URL=${PLEX_URL}
+      - PLEX_TOKEN=${PLEX_TOKEN}
       - TZ=${TZ}
     volumes:
       - ${CFG_PATH}/plex-auto-languages:/config
